@@ -18,13 +18,7 @@ async fn main() -> io::Result<()> {
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
             // register HTTP requests handlers
-            .service(tweet::list)
-            .service(tweet::get)
-            .service(tweet::create)
-            .service(tweet::delete)
-            .service(like::list)
-            .service(like::plus_one)
-            .service(like::minus_one)
+            .service(board::list)
     })
     .bind("0.0.0.0:9090")?
     .run()

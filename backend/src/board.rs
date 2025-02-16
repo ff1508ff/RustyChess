@@ -10,8 +10,7 @@ use crate::constants::APPLICATION_JSON;
 pub struct Pawn {
     pub name: String,
     pub pawn_type_id: String,
-    // Rules should be in the (x, y) format. E.g. (-2,1) whoud be 2 to the left and one up.
-    pub movement_rules: Vec<(u8, u8)>,
+    pub movement_rules: String,
     pub player_id: String,
 }
 
