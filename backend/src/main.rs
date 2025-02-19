@@ -1,8 +1,9 @@
 #[macro_use]
 extern crate actix_web;
-#[macro_use]
 extern crate diesel;
+extern crate dotenv;
 
+use dotenv::dotenv;
 use std::{env, io};
 
 use actix_web::{middleware, App, HttpServer};
@@ -15,6 +16,7 @@ mod constants;
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
+    dotenv().ok();
     env::set_var("RUST_LOG", "actix_web=debug,actix_server=info");
     env_logger::init();
 
@@ -26,7 +28,7 @@ async fn main() -> io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
-            .data(pool.clone())
+            .app_data(pool.clone())
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
             // register HTTP requests handlers

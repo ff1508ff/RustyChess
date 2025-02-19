@@ -1,8 +1,6 @@
-use actix_web::web::{Json, Path};
 use actix_web::HttpResponse;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
-use uuid::Uuid;
 
 use crate::constants::APPLICATION_JSON;
 
