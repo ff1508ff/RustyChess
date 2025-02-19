@@ -1,49 +1,31 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    Games (id) {
-        id -> Integer,
-        state -> Blob,
+    Games (Id) {
+        Id -> Integer,
+        State -> Blob,
     }
 }
 
 diesel::table! {
-    MovementPieces (id) {
-        id -> Integer,
-        movementsId -> Integer,
-        piescesId -> Integer,
-    }
-}
-
-diesel::table! {
-    Movements (id) {
-        id -> Integer,
-        rule -> Blob,
-    }
-}
-
-diesel::table! {
-    Pieces (id) {
-        id -> Integer,
+    Pieces (Id) {
+        Id -> Integer,
         #[max_length = 50]
-        name -> Varchar,
+        Name -> Varchar,
+        #[max_length = 255]
+        Movement -> Varchar,
     }
 }
 
 diesel::table! {
-    StartPositions (id) {
-        id -> Integer,
-        state -> Blob,
+    StartPositions (Id) {
+        Id -> Integer,
+        State -> Blob,
     }
 }
-
-diesel::joinable!(MovementPieces -> Movements (movementsId));
-diesel::joinable!(MovementPieces -> Pieces (piescesId));
 
 diesel::allow_tables_to_appear_in_same_query!(
     Games,
-    MovementPieces,
-    Movements,
     Pieces,
     StartPositions,
 );

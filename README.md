@@ -22,6 +22,16 @@ I try to document my journey here every time I work on the project (this is like
 **What I did:** I worked on the Decisions chapter. \
 **Notes:** I wanted to get some work done but couldn't find the motivation to start. When I finally sat down with my laptop, though, I just kept writing and didn't stop.
 
+[17.FEB.2025] \
+**Motivation:** 8/10 \
+**What I did:** I worked on the migration scripts. \
+**Notes:** I saw that my current database setup didn't make any sense so I rewrote it.
+
+[18.FEB.2025] \
+**Motivation:** 4/10 \
+**What I did:** I worked on the MySQL connection pool. \
+**Notes:** I was sick, so I was not really produktiv. I looked at some documentation and tried implementing a connection pool. I can't test it because for some reason does my environment variable that I habe in .env not exist.
+
 ## Decisions
 
 I had a course in school about "distributed systems", which was really hard, because it was a group project and as always with such projects I did way too much work in comparison to my teammates. But I learned something really important and that are design decisions. I never actively thought about them. I used to just work on things and go with the first idea I had, which worked 99% of the time. But on this project I actively thought about solutions, which are surprisingly many. From how to save the board state to how to communicate moves.
