@@ -37,7 +37,15 @@ I try to document my journey here every time I work on the project (this is like
 **What I did:** I worked on fixing the env "bug" and removed every bug. \
 **Notes:** It is hard to work on it, because I now need to work on things in the office and I don't find the motivation to do something/start at home. At least, I do something every day.
 
+[20.FEB.2025] \
+**Motivation:** 8/10 \
+**What I did:** Started with authentication, expanded the Decisions chapter and made the repository public. \
+**Notes:** I realized that "I worked on xyz" is a waste of characters, so I won't write it from now on. I decided to start with authentication, because it is something I will need and why not begin with it. I've never done migrations from SQL to anything else before, only from C# to SQL. I also decided to make this repository public. For that, I needed a license, which turned out to be harder then I expected. After, reading about five different licenses, I ended up choosing the MIT license. I almost went with Apache 2.0 but decided against it in the end. \
+I like this project even more now because it led me to explore something new that I wouldn't have looked into otherwise. I'm not thrilled that it's a legal thing, but still.
+
 ## Decisions
+
+### Design
 
 I had a course in school about "distributed systems", which was really hard, because it was a group project and as always with such projects I did way too much work in comparison to my teammates. But I learned something really important and that are design decisions. I never actively thought about them. I used to just work on things and go with the first idea I had, which worked 99% of the time. But on this project I actively thought about solutions, which are surprisingly many. From how to save the board state to how to communicate moves.
 
@@ -46,3 +54,7 @@ I had a course in school about "distributed systems", which was really hard, bec
 | Save pieces in a way that is easily extendable (add new custom pieces) | Save pieces and their movement options in database so I don't have to code new pieces and can just write them into the db.                                                                                                                                                                                                                               | Movement rule looks like this "(∣x2−x1∣\*∣y2−y1∣)=2", this would be for a knight. I’m not sure if all pieces can be represented this way, but I'll figure it out if not. |
 | Representing a board                                                   | I saw a video from "the Cherno" ([found it](https://www.youtube.com/watch?v=NeHjMNBsVfs&t=786s) ) even though I never watched it to the end I still remembered that the chess engine he reviewed saved every piece in a u64, which makes sense, but I was not a fan of it. In the end, I decided to use a two-dimensional array to store all the pieces. | Still not sure which the better solution is.                                                                                                                             |
 | Saving board state.                                                    | I will probably use a binary file format, because it is the most memory efficient solution I know of and if I want to save a lot of games that is needed. The only problem is that it is not human readable, but that should not be a problem.                                                                                                           | There is a rust library that does that so I will probably use that and maybe if I finish the main project, I might try building my own.                                  |
+
+### Other
+
+SQL formatting rules: Top comment on https://stackoverflow.com/questions/3593582/database-naming-conventions-by-microsoft
