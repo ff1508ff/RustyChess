@@ -11,18 +11,22 @@ use actix_web::{middleware, App, HttpServer};
 use diesel::r2d2::ConnectionManager;
 use diesel::MysqlConnection;
 
+mod user;
+
 mod board;
 mod constants;
+
+pub type Pool = r2d2::Pool<ConnectionManager<MysqlConnection>>;
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     dotenv().ok();
-    env::set_var("RUST_LOG", "actix_web=debug,actix_server=info");
+    env::set_var("RUST_LOG", "actix_web=debug, actix_server=info");
     env_logger::init();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL");
     let manager = ConnectionManager::<MysqlConnection>::new(database_url);
-    let pool = r2d2::Pool::builder()
+    let pool: Pool = r2d2::Pool::builder()
         .build(manager)
         .expect("Failed to create pool");
 

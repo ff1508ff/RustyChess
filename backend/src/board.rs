@@ -9,7 +9,7 @@ pub struct Pawn {
     pub name: String,
     pub pawn_type_id: String,
     pub movement_rules: String,
-    pub player_id: String,
+    pub color: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
