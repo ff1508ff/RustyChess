@@ -48,6 +48,11 @@ I like this project even more now because it led me to explore something new tha
 **What I did:** Pull data from the database into structs. \
 **Notes:** Diesel is annoying me. It kept throwing an error that didn't actually exist (or at least not directly). The real issue was that my table and struct had the same name, but the compiler just told me that Diesel wasn't defined. It took me 20 minutes to finally read the second error message (where it all made sense). :(
 
+[22.FEB.2025] \
+**Motivation:** 6/10 \
+**What I did:** Pull data from the database into structs again. \
+**Notes:** I should have worked on it through the day, but I got caught up in an interesting book. In the evening I was at a game and came really tiered back. I tried fixing some bugs, but got too frustrated and ended up resetting everything.
+
 ## Decisions
 
 ### Design
