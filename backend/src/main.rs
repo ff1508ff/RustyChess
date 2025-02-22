@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate actix_web;
+#[macro_use]
 extern crate diesel;
 extern crate dotenv;
 
@@ -11,6 +12,7 @@ use actix_web::{middleware, App, HttpServer};
 use diesel::r2d2::ConnectionManager;
 use diesel::MysqlConnection;
 
+mod schema;
 mod user;
 
 mod board;
@@ -36,6 +38,7 @@ async fn main() -> io::Result<()> {
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
             // register HTTP requests handlers
+            .service(user::get_users)
             .service(board::list)
     })
     .bind(("0.0.0.0", 9090))?

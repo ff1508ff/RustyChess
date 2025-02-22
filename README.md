@@ -43,6 +43,11 @@ I try to document my journey here every time I work on the project (this is like
 **Notes:** I realized that "I worked on xyz" is a waste of characters, so I won't write it from now on. I decided to start with authentication, because it is something I will need and why not begin with it. I've never done migrations from SQL to anything else before, only from C# to SQL. I also decided to make this repository public. For that, I needed a license, which turned out to be harder then I expected. After, reading about five different licenses, I ended up choosing the MIT license. I almost went with Apache 2.0 but decided against it in the end. \
 I like this project even more now because it led me to explore something new that I wouldn't have looked into otherwise. I'm not thrilled that it's a legal thing, but still.
 
+[21.FEB.2025] \
+**Motivation:** 8/10 \
+**What I did:** Pull data from the database into structs. \
+**Notes:** Diesel is annoying me. It kept throwing an error that didn't actually exist (or at least not directly). The real issue was that my table and struct had the same name, but the compiler just told me that Diesel wasn't defined. It took me 20 minutes to finally read the second error message (where it all made sense). :(
+
 ## Decisions
 
 ### Design

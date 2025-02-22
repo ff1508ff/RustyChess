@@ -1,7 +1,7 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    Game (Id) {
+    game (Id) {
         Id -> Integer,
         State -> Blob,
         PlayerWhiteId -> Integer,
@@ -12,7 +12,7 @@ diesel::table! {
 }
 
 diesel::table! {
-    Pawn (Id) {
+    pawn (Id) {
         Id -> Integer,
         #[max_length = 50]
         Name -> Varchar,
@@ -22,7 +22,7 @@ diesel::table! {
 }
 
 diesel::table! {
-    Role (Id) {
+    role (Id) {
         Id -> Integer,
         #[max_length = 255]
         Name -> Varchar,
@@ -30,14 +30,14 @@ diesel::table! {
 }
 
 diesel::table! {
-    StartPosition (Id) {
+    startPosition (Id) {
         Id -> Integer,
         State -> Blob,
     }
 }
 
 diesel::table! {
-    User (Id) {
+    user (Id) {
         Id -> Integer,
         RoleId -> Integer,
         #[max_length = 100]
@@ -48,12 +48,12 @@ diesel::table! {
     }
 }
 
-diesel::joinable!(User -> Role (RoleId));
+diesel::joinable!(user -> role (RoleId));
 
 diesel::allow_tables_to_appear_in_same_query!(
-    Game,
-    Pawn,
-    Role,
-    StartPosition,
-    User,
+    game,
+    pawn,
+    role,
+    startPosition,
+    user,
 );
