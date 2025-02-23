@@ -1,59 +1,59 @@
 // @generated automatically by Diesel CLI.
 
 diesel::table! {
-    game (Id) {
-        Id -> Integer,
-        State -> Blob,
-        PlayerWhiteId -> Integer,
-        PlayerBlackId -> Integer,
-        CreatedAt -> Datetime,
-        EndedAt -> Nullable<Datetime>,
+    games (id) {
+        id -> Integer,
+        state -> Blob,
+        player_id_white -> Integer,
+        player_id_black -> Integer,
+        created_at -> Datetime,
+        ended_at -> Nullable<Datetime>,
     }
 }
 
 diesel::table! {
-    pawn (Id) {
-        Id -> Integer,
+    pawns (id) {
+        id -> Integer,
         #[max_length = 50]
-        Name -> Varchar,
+        name -> Varchar,
         #[max_length = 255]
-        Movement -> Varchar,
+        movement -> Varchar,
     }
 }
 
 diesel::table! {
-    role (Id) {
-        Id -> Integer,
+    roles (id) {
+        id -> Integer,
         #[max_length = 255]
-        Name -> Varchar,
+        name -> Varchar,
     }
 }
 
 diesel::table! {
-    startPosition (Id) {
-        Id -> Integer,
-        State -> Blob,
+    startPositions (id) {
+        id -> Integer,
+        state -> Blob,
     }
 }
 
 diesel::table! {
-    user (Id) {
-        Id -> Integer,
-        RoleId -> Integer,
+    users (id) {
+        id -> Integer,
+        role_id -> Integer,
         #[max_length = 100]
-        Username -> Varchar,
+        username -> Varchar,
         #[max_length = 255]
-        Email -> Varchar,
-        CreatedAt -> Datetime,
+        email -> Varchar,
+        created_at -> Datetime,
     }
 }
 
-diesel::joinable!(user -> role (RoleId));
+diesel::joinable!(users -> roles (role_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
-    game,
-    pawn,
-    role,
-    startPosition,
-    user,
+    games,
+    pawns,
+    roles,
+    startPositions,
+    users,
 );

@@ -1,13 +1,12 @@
 #[macro_use]
 extern crate actix_web;
-#[macro_use]
 extern crate diesel;
 extern crate dotenv;
 
 use dotenv::dotenv;
 use std::{env, io};
 
-use actix_web::{middleware, App, HttpServer};
+use actix_web::{middleware, web, App, HttpServer};
 
 use diesel::r2d2::ConnectionManager;
 use diesel::MysqlConnection;
@@ -34,7 +33,7 @@ async fn main() -> io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
-            .app_data(pool.clone())
+            .app_data(web::Data::new(pool.clone()))
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
             // register HTTP requests handlers

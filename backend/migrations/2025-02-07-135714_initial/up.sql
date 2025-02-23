@@ -1,49 +1,49 @@
 -- Your SQL goes here
 
-CREATE TABLE IF NOT EXISTS role
+CREATE TABLE roles
 (
-    Id   INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255) NOT NULL
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
-INSERT INTO role (Id, Name)
+INSERT INTO roles (id, name)
 VALUES (1, 'Admin'),
        (2, 'Moderator'),
        (3, 'Player');
 
-CREATE TABLE IF NOT EXISTS user
+CREATE TABLE users
 (
-    Id        INT AUTO_INCREMENT PRIMARY KEY,
-    RoleId    INT          NOT NULL,
-    Username  VARCHAR(100) NOT NULL,
-    Email     VARCHAR(255) NOT NULL,
-    CreatedAt DATETIME     NOT NULL,
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    role_id    INT          NOT NULL,
+    username   VARCHAR(100) NOT NULL,
+    email      VARCHAR(255) NOT NULL,
+    created_at DATETIME     NOT NULL,
 
-    FOREIGN KEY (RoleId) REFERENCES `role` (Id)
+    FOREIGN KEY (role_id) REFERENCES `roles` (id)
 );
 
-CREATE TABLE IF NOT EXISTS game
+CREATE TABLE games
 (
-    Id            INT AUTO_INCREMENT PRIMARY KEY,
-    State         BLOB     NOT NULL,
-    PlayerWhiteId INT      NOT NULL,
-    PlayerBlackId INT      NOT NULL,
-    CreatedAt     DATETIME NOT NULL,
-    EndedAt       DATETIME,
+    id              INT AUTO_INCREMENT PRIMARY KEY,
+    state           BLOB     NOT NULL,
+    player_id_white INT      NOT NULL,
+    player_id_black INT      NOT NULL,
+    created_at      DATETIME NOT NULL,
+    ended_at        DATETIME,
 
-    FOREIGN KEY (PlayerWhiteId) REFERENCES `user` (Id),
-    FOREIGN KEY (PlayerBlackId) REFERENCES `user` (Id)
+    FOREIGN KEY (player_id_white) REFERENCES `users` (id),
+    FOREIGN KEY (player_id_black) REFERENCES `users` (id)
 );
 
-CREATE TABLE IF NOT EXISTS startPosition
+CREATE TABLE startPositions
 (
-    Id    INT AUTO_INCREMENT PRIMARY KEY,
-    State BLOB NOT NULL
+    id    INT AUTO_INCREMENT PRIMARY KEY,
+    state BLOB NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS pawn
+CREATE TABLE pawns
 (
-    Id       INT AUTO_INCREMENT PRIMARY KEY,
-    Name     VARCHAR(50)  NOT NULL,
-    Movement VARCHAR(255) NOT NULL
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    name     VARCHAR(50)  NOT NULL,
+    movement VARCHAR(255) NOT NULL
 );

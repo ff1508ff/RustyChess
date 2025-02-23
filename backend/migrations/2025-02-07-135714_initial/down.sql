@@ -1,7 +1,7 @@
 -- This file should undo anything in `up.sql`
 
-DROP TABLE game;
-DROP TABLE startPosition;
-DROP TABLE pawn;
-DROP TABLE user;
-DROP TABLE role;
+DROP TABLE games;
+DROP TABLE startPositions;
+DROP TABLE pawns;
+DROP TABLE users;
+DROP TABLE roles;

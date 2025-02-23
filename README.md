@@ -53,6 +53,46 @@ I like this project even more now because it led me to explore something new tha
 **What I did:** Pull data from the database into structs again. \
 **Notes:** I should have worked on it through the day, but I got caught up in an interesting book. In the evening I was at a game and came really tiered back. I tried fixing some bugs, but got too frustrated and ended up resetting everything.
 
+[23.FEB.2025] \
+**Motivation:** 4/10 \
+**What I did:** Rewrote my SQL script. \
+**Notes:** I'm really frustrated with Diesel. It won't let me stick to both Rust struct naming conventions and my SQL naming conventions. After wasting another hour on this, I rewrote the database and I still have bugs that I don't understand.
+For example, does anyone know what’s wrong with this?
+
+```Rust
+error[E0277]: the trait bound `(diesel::sql_types::Integer, dies
+    --> src/user.rs:50:23
+     |
+50   |         .load::<User>(conn)?;
+     |          ----         ^^^^ the trait `load_dsl::private::
+     |          |
+     |          required by a bound introduced by this call
+     |
+     = note: this is a mismatch between what your query returns
+     = note: the fields in your struct need to match the fields
+     = note: consider using `#[derive(Selectable)]` or #[derive(
+             on your struct `User` and in your query `.select(Us
+     = help: the following other types implement trait `load_dsl
+               (ST0, ST1)
+               (ST0, ST1, ST2)
+               (ST0, ST1, ST2, ST3)
+               (ST0, ST1, ST2, ST3, ST4)
+               (ST0, ST1, ST2, ST3, ST4, ST5)
+               (ST0, ST1, ST2, ST3, ST4, ST5, ST6)
+               (ST0, ST1, ST2, ST3, ST4, ST5, ST6, ST7)
+               (ST0, ST1, ST2, ST3, ST4, ST5, ST6, ST7, ST8)
+             and 24 others
+     = note: required for `SelectStatement<FromClause<table>, SelectClause<(id, role_id, username, email, created_at)>>` to implement `LoadQuery<'_, _, User>`
+```
+
+And yes I did derive "Selectable".
+
+## Learnings worth mentioning (and are are not me complaining about Diesel)
+
+When writing SQL migrations, avoid using "IF NOT EXISTS." It helps during editing because if you forget to drop something before changing fields, you'll get an error, which makes it easier to spot and fix. \
+
+"cargo check" is way faster than "cargo run".
+
 ## Decisions
 
 ### Design
@@ -64,7 +104,3 @@ I had a course in school about "distributed systems", which was really hard, bec
 | Save pieces in a way that is easily extendable (add new custom pieces) | Save pieces and their movement options in database so I don't have to code new pieces and can just write them into the db.                                                                                                                                                                                                                               | Movement rule looks like this "(∣x2−x1∣\*∣y2−y1∣)=2", this would be for a knight. I’m not sure if all pieces can be represented this way, but I'll figure it out if not. |
 | Representing a board                                                   | I saw a video from "the Cherno" ([found it](https://www.youtube.com/watch?v=NeHjMNBsVfs&t=786s) ) even though I never watched it to the end I still remembered that the chess engine he reviewed saved every piece in a u64, which makes sense, but I was not a fan of it. In the end, I decided to use a two-dimensional array to store all the pieces. | Still not sure which the better solution is.                                                                                                                             |
 | Saving board state.                                                    | I will probably use a binary file format, because it is the most memory efficient solution I know of and if I want to save a lot of games that is needed. The only problem is that it is not human readable, but that should not be a problem.                                                                                                           | There is a rust library that does that so I will probably use that and maybe if I finish the main project, I might try building my own.                                  |
-
-### Other
-
-SQL formatting rules: Top comment on https://stackoverflow.com/questions/3593582/database-naming-conventions-by-microsoft
