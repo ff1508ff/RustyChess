@@ -87,6 +87,16 @@ error[E0277]: the trait bound `(diesel::sql_types::Integer, dies
 
 And yes I did derive "Selectable".
 
+[23.FEB.2025] \
+**Motivation:** 5/10 \
+**What I did:** Debug!!!. \
+**Notes:** I didn't invest much time (~30min) and it was mainly trying things from the Diesel documentation and (out of sheer desperation) ChatGPT (yeah, that's how bad it got). But it all didn't help so I will start implementing the logic with out a database. I nuked my work so this project is still a 100% AI free.
+
+[26.FEB.2025] \
+**Motivation:** 7/10 \
+**What I did:** Start with the move validation function. \
+**Notes:** It looks like I was really tired the last 2 days and completely forgot about this project, which really annoys me. Anyway, I struggled to even start, because the only solution I could come up with felt way to C like. My idea was to loop over every character and process it, which is basically how I approach all the Advent of Code problems (which I did in C). I also fought with my Neovim config, so my progress was not that big.
+
 ## Learnings worth mentioning (and are are not me complaining about Diesel)
 
 When writing SQL migrations, avoid using "IF NOT EXISTS." It helps during editing because if you forget to drop something before changing fields, you'll get an error, which makes it easier to spot and fix. \

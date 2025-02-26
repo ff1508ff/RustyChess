@@ -35,16 +35,16 @@ pub struct User {
 //     );
 // }
 
-#[get("/users")]
-pub async fn get_users(db: web::Data<Pool>) -> Result<HttpResponse, Error> {
-    Ok(web::block(move || get_all_users(db))
-        .await
-        .map(|user| HttpResponse::Ok().json(user.unwrap()))
-        .map_err(|_| actix_web::error::ErrorInternalServerError("Database error"))?)
-}
-
-fn get_all_users(pool: web::Data<Pool>) -> Result<Vec<User>, diesel::result::Error> {
-    let conn = &mut pool.get().unwrap();
-    let items = users.load::<User>(conn)?;
-    Ok(items)
-}
+// #[get("/users")]
+// pub async fn get_users(db: web::Data<Pool>) -> Result<HttpResponse, Error> {
+//     Ok(web::block(move || get_all_users(db))
+//         .await
+//         .map(|user| HttpResponse::Ok().json(user.unwrap()))
+//         .map_err(|_| actix_web::error::ErrorInternalServerError("Database error"))?)
+// }
+//
+// fn get_all_users(pool: web::Data<Pool>) -> Result<Vec<User>, diesel::result::Error> {
+//     let conn = &mut pool.get().unwrap();
+//     let items = users.load::<User>(conn)?;
+//     Ok(items)
+// }
